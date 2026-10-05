@@ -1,11 +1,563 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="retro">
 <head>
   <meta charset="UTF-8">
-  <title>はじめてのサイト</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // 前回選んだテーマを、描画前に復元(ちらつき防止)。毎回モノクロから始めたい場合はこの script ごと削除
+    try { var t = localStorage.getItem('portfolio-theme'); if (t === 'pop' || t === 'retro') document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <title>My Games | Portfolio</title>
+  <meta name="description" content="ゲームプログラマ志望のポートフォリオ。自作エンジンと制作したゲームを紹介します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Limelight&family=Zen+Old+Mincho:wght@500;700&family=Rubik+Wet+Paint&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>こんにちは！</h1>
-  <p>はじめてのホームページです。</p>
+
+<!-- 背景: 縦長イラスト(スクロールに合わせて送る)+フィルム演出 -->
+<div class="bg" aria-hidden="true"><div class="bg-art"></div></div>
+<div class="scratch" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="#top" class="logo">My Games</a>
+    <button class="nav-toggle" aria-label="メニュー">☰</button>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#current">Now</a></li>
+      <li><a href="#tech">Tech</a></li>
+      <li><a href="#works">Works</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="title-card">
+        <!-- ★プロフィール: 写真をクリックするとテーマ(雰囲気)が切り替わる -->
+        <button class="avatar" type="button" aria-pressed="false" aria-label="写真をクリックしてサイトの雰囲気を切り替える">
+               retro = モノクロ時の写真 / pop = カラフル時の写真 -->
+          <img class="avatar-photo retro" src="assets/img/Selfie.jpg" alt="顔写真(モノクロ版)" width="168" height="168">
+          <img class="avatar-photo pop" src="assets/img/Selfie.jpg" alt="顔写真(カラフル版)" width="168" height="168">
+          <span class="avatar-hint">CLICK!</span>
+        </button>
+        <p class="name">
+          <span class="name-ja">小林 真翔</span>
+          <span class="name-en">KOBAYASHI MASATO</span>
+          <span class="name-role">Game Programmer</span>
+        </p>
+        <span class="eyebrow">A GAME PORTFOLIO</span>
+        <h1><span>My</span> <span style="animation-delay:-1.2s">Games</span></h1>
+        <div class="ornament">★</div>
+        <p>2024〜2026年に、個人・チーム合わせて14作品ほどを制作しました。<br>ゲームプログラムとエディタ制作を中心にまとめています。</p>
+        <div class="cta">
+          <a class="btn primary" href="#works">作品を見る</a>
+          <a class="btn" href="#current">制作中の作品</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">ABOUT</span><h2>自己紹介</h2></div>
+      <div class="about-grid">
+        <div class="panel reveal">
+          <h3>HOBBY</h3>
+          <p>イラスト制作</p>
+          <p class="lead">ゲーム制作の際はプログラムだけでなく、イラストなどのリソースも自作することが多いです。 </p>
+        </div>
+        <div class="panel reveal">
+          <h3>FAVORITE GAMES</h3>
+          <ul class="chips">
+            <li>Marvel’s Spider-Man</li><li>Celeste</li><li>Jump King</li>
+          </ul>
+          <p class="lead">アクションゲームが好きですがジャンル問わず色々やります。</p>
+        </div>
+        <div class="panel reveal" style="grid-column: 1 / -1;">
+          <h3>TOOLS</h3>
+          <ul class="chips">
+            <li>Visual Studio</li><li>VS Code</li><li>GitHub</li><li>Blender</li><li>Aseprite</li><li>CLIP STUDIO PAINT</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Current ===== -->
+  <section id="current">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">NOW</span><h2>現在制作中の作品</h2></div>
+      <div class="featured reveal">
+        <div class="shots">
+          <img src="assets/img/current-1.webp" alt="制作中のゲームのスクリーンショット" loading="lazy">
+          <img src="assets/img/current-2.webp" alt="自作エディタの画面" loading="lazy">
+        </div>
+        <div>
+          <span class="badge">IN PROGRESS</span>
+          <h3>3Dアクション</h3>
+          <p>3D空間を進んでいき、アイテムを集めながらゴールを目指すゲームです。レベルデザインを人に任せるために、扱いやすいエディタを目標に制作中です。</p>
+          <dl class="spec">
+            <dt>ジャンル</dt><dd>3Dアクション</dd>
+            <dt>開発環境</dt><dd>DirectX12</dd>
+            <dt>制作期間</dt><dd>2026年5月〜</dd>
+            <dt>担当箇所</dt><dd>プログラムの全て / 企画</dd>
+          </dl>
+          <a class="link" href="https://youtu.be/ucH_WTS4NCo" target="_blank" rel="noopener">動画を見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Tech ===== -->
+  <section id="tech">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">TECH</span><h2>工夫した点</h2></div>
+      <div class="tech-grid">
+        <article class="panel reveal">
+          <h3>01　リフレクションでエディタ対応を自動化</h3>
+          <p class="note">フィールドを REFLECT_FIELD で並べるだけで、編集・保存・プリセット化に対応しました。</p>
+          <ol class="flow">
+            <li>コンポーネント定義に登録マクロを追加</li>
+            <li>マクロから TypeInfo が構築される</li>
+            <li>EditorSystem が編集・保存・読み込みに利用</li>
+          </ol>
+<pre><code>REFLECT_STRUCT_BEGIN(SpriteComponent, "Asset")
+  REFLECT_ENUM_FIELD(space),
+  REFLECT_FIELD(isVisible),
+  REFLECT_FIELD(pivot),
+  REFLECT_FIELD(color),
+  REFLECT_FIELD(textureName),
+  // ...フィールド数分続く
+REFLECT_STRUCT_END(SpriteComponent)</code></pre>
+          <p class="note">保存形式は JSON(nlohmann)。プリセット単位・シーン全体単位のどちらでも保存できます。</p>
+        </article>
+
+        <article class="panel reveal">
+          <h3>02　Blender + 自作配置エディタ</h3>
+          <p class="note">地形は Blender、アイテムや細かい足場の配置・パラメータ調整は自作エディタで行います。</p>
+          <img src="assets/img/blender.webp" alt="Blenderで作成した地形" loading="lazy" style="border-radius:12px;border:1px solid var(--border)">
+          <img src="assets/img/current-2.webp" alt="自作配置エディタ" loading="lazy" style="border-radius:12px;border:1px solid var(--border)">
+          <p class="note">地形のメッシュコライダーは assimp で構築、配置操作は ImGuizmo を使用。現状の細かい足場の衝突判定は AABB・OBB のみ実装しています。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Works ===== -->
+  <section id="works">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">WORKS</span><h2>作品紹介</h2>
+        <p class="note" style="margin-top:12px">カードをクリックすると、動画・ダウンロードなどの詳細が開きます。</p>
+      </div>
+
+      <div class="year">
+        <h3 class="reveal">1年次作品</h3>
+        <div class="cards">
+
+          <article class="card reveal">
+            <div class="thumb"><img src="assets/img/witch-1.webp" alt="The Witch Policeのスクリーンショット" loading="lazy"></div>
+            <div class="body">
+              <h4><button type="button" class="card-open" data-open="game-witch">The Witch Police</button></h4>
+              <ul class="tags"><li>シューティング</li><li>学内制エンジン</li><li>1人</li><li>1ヶ月</li></ul>
+              <p class="role"><b>担当</b>　アプリケーション、リソース</p>
+              <p>初めて作成したゲームです。覚えたてのC++に苦戦しながらも制作しました。</p>
+              <span class="link">詳細を見る →</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="thumb"><img src="assets/img/noda-1.webp" alt="このハナの一枝の内には尽きることのない言葉がこもっているから、生半可な気持ちと思わないで。のスクリーンショット" loading="lazy"></div>
+            <div class="body">
+              <h4><button type="button" class="card-open" data-open="game-noda">このハナの一枝の内には尽きることのない言葉がこもっているから、生半可な気持ちと思わないで。</button></h4>
+              <ul class="tags"><li>アクション</li><li>学内制エンジン</li><li>3人</li><li>1ヶ月</li></ul>
+              <p class="role"><b>担当</b>　背景 / エンディング / イラスト</p>
+              <p>1か月かけてのチーム制作に初めて挑戦した作品です。イラストをメインで担当しました。</p>
+              <span class="link">詳細を見る →</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="thumb"><img src="assets/img/maou-1.png" alt="頂上の魔王のスクリーンショット" loading="lazy"></div>
+            <div class="body">
+              <h4><button type="button" class="card-open" data-open="game-maou">頂上の魔王</button></h4>
+              <ul class="tags"><li>アクション</li><li>学内制エンジン</li><li>3人</li><li>1ヶ月</li></ul>
+              <p class="role"><b>担当</b>　プレイヤー挙動、ボス2種類</p>
+              <p>初めてのGitHub利用やクラス化など挑戦の多い作品でした。</p>
+              <span class="link">詳細を見る →</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="year">
+        <h3 class="reveal">2年次作品</h3>
+        <div class="cards">
+
+          <article class="card reveal">
+            <div class="thumb"><img src="assets/img/seigi-1.webp" alt="正義が勝つのスクリーンショット" loading="lazy"></div>
+            <div class="body">
+              <h4><button type="button" class="card-open" data-open="game-seigi">正義が勝つ</button></h4>
+              <ul class="tags"><li>レールシューティング</li><li>DirectX12</li><li>1人</li><li>2ヶ月</li></ul>
+              <p class="role"><b>担当</b>　エンジン / アプリケーション、リソース</p>
+              <p>初めての自作エンジンでのゲーム制作です。</p>
+              <span class="link">詳細を見る →</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="thumb"><img src="assets/img/gunsole-2.webp" alt="GUN SOLEのスクリーンショット" loading="lazy"></div>
+            <div class="body">
+              <h4><button type="button" class="card-open" data-open="game-gunsole">GUN SOLE</button></h4>
+              <ul class="tags"><li>ランアクション</li><li>DirectX12</li><li>3人</li><li>1ヶ月</li></ul>
+              <p class="role"><b>担当</b>　エンジン / アイテム / 演出全般、3Dモデル / イラスト</p>
+              <p>チーム制作で初めて自分のエンジンを利用した作品です。</p>
+              <span class="link">詳細を見る →</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="thumb"><img src="assets/img/paddle-1.webp" alt="歪んだパドルのスクリーンショット" loading="lazy"></div>
+            <div class="body">
+              <h4><button type="button" class="card-open" data-open="game-paddle">歪んだパドル</button></h4>
+              <ul class="tags"><li>特殊テニス</li><li>DirectX12</li><li>3人</li><li>1ヶ月</li></ul>
+              <p class="role"><b>担当</b>　エンジン、敵挙動、キャラデザイン</p>
+              <p>1か月の制作期間でエンジンを1から設計し直しました。</p>
+              <span class="link">詳細を見る →</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="year">
+        <h3 class="reveal">3年次作品</h3>
+        <div class="cards">
+
+          <article class="card reveal">
+            <div class="thumb"><img src="assets/img/rabbit-1.webp" alt="RabbitDokuのスクリーンショット" loading="lazy"></div>
+            <div class="body">
+              <h4><button type="button" class="card-open" data-open="game-rabbit">RabbitDoku</button></h4>
+              <ul class="tags"><li>アクション</li><li>DirectX12</li><li>3人</li><li>4ヶ月</li></ul>
+              <p class="role"><b>担当</b>　アプリケーション / エンジン、一部レベルデザイン</p>
+              <p>プランナーがステージ設計しやすいよう、ブロックやギミックの配置などを編集できるエディタを制作しました。</p>
+              <span class="link">詳細を見る →</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ===== 作品の詳細ダイアログ(カードの data-open と id を対応させる) ===== -->
+
+<dialog id="game-witch" class="game-dialog" aria-labelledby="game-witch-title">
+  <form method="dialog" class="dialog-close-wrap"><button class="dialog-close" aria-label="閉じる">✕</button></form>
+  <div class="dialog-body">
+    <header>
+      <span class="eyebrow">1年次作品</span>
+      <h3 id="game-witch-title">The Witch Police</h3>
+      <ul class="tags"><li>シューティング</li><li>学内制エンジン</li><li>1人</li><li>1ヶ月</li></ul>
+    </header>
+
+    <!-- 動画: ダイアログを開いたときだけ YouTube を読み込みます(data-yt = 動画ID) -->
+    <div class="video" data-yt="-QqxFUqPhQw"></div>
+
+    <div class="dialog-actions">
+      <a class="btn primary dl " href="https://drive.google.com/file/d/14BDpBNfDRxKkkg_K-fNX4QTCdj03LpP1/view?usp=sharing" aria-disabled="true">ダウンロード</a>
+      <a class="btn" href="https://youtu.be/-QqxFUqPhQw" target="_blank" rel="noopener">YouTubeで見る</a>
+    </div>
+
+    <dl class="spec">
+      <dt>ジャンル</dt><dd>シューティング</dd>
+      <dt>開発環境</dt><dd>学内制エンジン</dd>
+      <dt>制作人数</dt><dd>1人</dd>
+      <dt>制作期間</dt><dd>1ヶ月</dd>
+      <dt>担当箇所</dt><dd>アプリケーション、リソース</dd>
+    </dl>
+
+    <section>
+      <h4>概要</h4>
+        <p>初めて作成したゲームです。覚えたてのC++に苦戦しながらも制作しました。</p>
+        <p>クラスやファイル分けの学習をまだ行っていなかったため、すべてのコードが main.cpp に記述されています。</p>
+    </section>
+
+    <div class="gallery">
+          <img src="assets/img/witch-1.webp" alt="The Witch Policeのスクリーンショット" loading="lazy">
+          <img src="assets/img/witch-2.webp" alt="The Witch Policeのスクリーンショット" loading="lazy">
+    </div>
+  </div>
+</dialog>
+
+<dialog id="game-noda" class="game-dialog" aria-labelledby="game-noda-title">
+  <form method="dialog" class="dialog-close-wrap"><button class="dialog-close" aria-label="閉じる">✕</button></form>
+  <div class="dialog-body">
+    <header>
+      <span class="eyebrow">1年次作品</span>
+      <h3 id="game-noda-title">このハナの一枝の内には尽きることのない言葉がこもっているから、生半可な気持ちと思わないで。</h3>
+      <ul class="tags"><li>アクション</li><li>学内制エンジン</li><li>3人</li><li>1ヶ月</li></ul>
+    </header>
+
+    <!-- 動画: ダイアログを開いたときだけ YouTube を読み込みます(data-yt = 動画ID) -->
+    <div class="video" data-yt="WfuN11mCQFc"></div>
+
+    <div class="dialog-actions">
+      <a class="btn primary dl " href="https://drive.google.com/file/d/1vPoCMwsMhF5rkiNAWfnSr-JNEL4XMx4d/view?usp=drive_link" aria-disabled="true">ダウンロード</a>
+      <a class="btn" href="https://youtu.be/WfuN11mCQFc" target="_blank" rel="noopener">YouTubeで見る</a>
+    </div>
+
+    <dl class="spec">
+      <dt>ジャンル</dt><dd>アクション</dd>
+      <dt>開発環境</dt><dd>学内制エンジン</dd>
+      <dt>制作人数</dt><dd>3人</dd>
+      <dt>制作期間</dt><dd>1ヶ月</dd>
+      <dt>担当箇所</dt><dd>背景 / エンディング / イラスト</dd>
+    </dl>
+
+    <section>
+      <h4>概要</h4>
+        <p>1か月かけてのチーム制作に初めて挑戦した作品です。イラストをメインで担当しました。</p>
+        <p>作品の奇抜な雰囲気がきっかけで「野田クリの野望」というテレビ番組に出演しました。</p>
+        <p>プログラムは背景の多重スクロールとエンディング(UVスクロールを活用した演出)を担当しました。</p>
+    </section>
+
+    <div class="gallery">
+          <img src="assets/img/noda-1.webp" alt="このハナの一枝の内には尽きることのない言葉がこもっているから、生半可な気持ちと思わないで。のスクリーンショット" loading="lazy">
+          <img src="assets/img/noda-2.webp" alt="このハナの一枝の内には尽きることのない言葉がこもっているから、生半可な気持ちと思わないで。のスクリーンショット" loading="lazy">
+    </div>
+  </div>
+</dialog>
+
+<dialog id="game-maou" class="game-dialog" aria-labelledby="game-maou-title">
+  <form method="dialog" class="dialog-close-wrap"><button class="dialog-close" aria-label="閉じる">✕</button></form>
+  <div class="dialog-body">
+    <header>
+      <span class="eyebrow">1年次作品</span>
+      <h3 id="game-maou-title">頂上の魔王</h3>
+      <ul class="tags"><li>アクション</li><li>学内制エンジン</li><li>3人</li><li>1ヶ月</li></ul>
+    </header>
+
+    <!-- 動画: ダイアログを開いたときだけ YouTube を読み込みます(data-yt = 動画ID) -->
+    <div class="video" data-yt="X7b3rQiz4t4"></div>
+
+    <div class="dialog-actions">
+      <!-- TODO: href を実際のダウンロードURL(GitHub Releases / itch.io など)に変え、class の is-todo を削除 -->
+      <a class="btn primary dl " href="https://drive.google.com/file/d/1D-Wd7qRcJZIA28YXfFqGwZGD2xKdRABi/view?usp=drive_link" aria-disabled="true">ダウンロード</a>
+      <a class="btn" href="https://youtu.be/X7b3rQiz4t4" target="_blank" rel="noopener">YouTubeで見る</a>
+    </div>
+
+    <dl class="spec">
+      <dt>ジャンル</dt><dd>アクション</dd>
+      <dt>開発環境</dt><dd>学内制エンジン</dd>
+      <dt>制作人数</dt><dd>3人</dd>
+      <dt>制作期間</dt><dd>1ヶ月</dd>
+      <dt>担当箇所</dt><dd>プレイヤー挙動、ボス2種類</dd>
+    </dl>
+
+    <section>
+      <h4>概要</h4>
+        <p>初めてのGitHub利用やクラス化など挑戦の多い作品でした。</p>
+        <p>メインプログラマーとして全体の設計を行いました。</p>
+        <p>カメラシェイクやパーティクルなど演出も入れ、ゲーム全体の完成度が上がるように工夫しました。</p>
+    </section>
+
+    <div class="gallery">
+          <img src="assets/img/maou-1.png" alt="頂上の魔王のスクリーンショット" loading="lazy">
+          <img src="assets/img/maou-2.webp" alt="頂上の魔王のスクリーンショット" loading="lazy">
+    </div>
+  </div>
+</dialog>
+
+<dialog id="game-seigi" class="game-dialog" aria-labelledby="game-seigi-title">
+  <form method="dialog" class="dialog-close-wrap"><button class="dialog-close" aria-label="閉じる">✕</button></form>
+  <div class="dialog-body">
+    <header>
+      <span class="eyebrow">2年次作品</span>
+      <h3 id="game-seigi-title">正義が勝つ</h3>
+      <ul class="tags"><li>レールシューティング</li><li>DirectX12</li><li>1人</li><li>2ヶ月</li></ul>
+    </header>
+
+    <!-- 動画: ダイアログを開いたときだけ YouTube を読み込みます(data-yt = 動画ID) -->
+    <div class="video" data-yt="VQRRywISXlk"></div>
+
+    <div class="dialog-actions">
+      <a class="btn primary dl " href="https://drive.google.com/file/d/1OlhHcYAGcy0pgkcvIRMIo8DPDIIb3CMs/view?usp=sharing" aria-disabled="true">ダウンロード</a>
+      <a class="btn" href="https://youtu.be/VQRRywISXlk" target="_blank" rel="noopener">YouTubeで見る</a>
+    </div>
+
+    <dl class="spec">
+      <dt>ジャンル</dt><dd>レールシューティング</dd>
+      <dt>開発環境</dt><dd>DirectX12</dd>
+      <dt>制作人数</dt><dd>1人</dd>
+      <dt>制作期間</dt><dd>2ヶ月</dd>
+      <dt>担当箇所</dt><dd>エンジン / アプリケーション、リソース</dd>
+    </dl>
+
+    <section>
+      <h4>概要</h4>
+        <p>初めての自作エンジンでのゲーム制作です。</p>
+        <p>背景オブジェクトやレールの配置を行えるエディタを作成しました。</p>
+        <p>スキニングやポストエフェクトなどを実装し、見た目が派手になるように工夫しました。</p>
+    </section>
+
+    <div class="gallery">
+          <img src="assets/img/seigi-1.webp" alt="正義が勝つのスクリーンショット" loading="lazy">
+          <img src="assets/img/seigi-2.webp" alt="正義が勝つのスクリーンショット" loading="lazy">
+    </div>
+  </div>
+</dialog>
+
+<dialog id="game-gunsole" class="game-dialog" aria-labelledby="game-gunsole-title">
+  <form method="dialog" class="dialog-close-wrap"><button class="dialog-close" aria-label="閉じる">✕</button></form>
+  <div class="dialog-body">
+    <header>
+      <span class="eyebrow">2年次作品</span>
+      <h3 id="game-gunsole-title">GUN SOLE</h3>
+      <ul class="tags"><li>ランアクション</li><li>DirectX12</li><li>3人</li><li>1ヶ月</li></ul>
+    </header>
+
+    <!-- 動画: ダイアログを開いたときだけ YouTube を読み込みます(data-yt = 動画ID) -->
+    <div class="video" data-yt="Ng9W7O3_eFg"></div>
+
+    <div class="dialog-actions">
+      <a class="btn primary dl " href="https://drive.google.com/file/d/1acClBRI1yw1BrKjhkH_1kzVfyInkQIck/view?usp=sharing" aria-disabled="true">ダウンロード</a>
+      <a class="btn" href="https://youtu.be/Ng9W7O3_eFg" target="_blank" rel="noopener">YouTubeで見る</a>
+    </div>
+
+    <dl class="spec">
+      <dt>ジャンル</dt><dd>ランアクション</dd>
+      <dt>開発環境</dt><dd>DirectX12</dd>
+      <dt>制作人数</dt><dd>3人</dd>
+      <dt>制作期間</dt><dd>1ヶ月</dd>
+      <dt>担当箇所</dt><dd>エンジン / アイテム / 演出全般、3Dモデル / イラスト</dd>
+    </dl>
+
+    <section>
+      <h4>概要</h4>
+        <p>チーム制作で初めて自分のエンジンを利用した作品です。</p>
+        <p>アイテムに触れていなくても近づくと引き寄せられる処理、ステージセレクト、煙や死亡時のエフェクトを作成しました。</p>
+    </section>
+
+    <div class="gallery">
+          <img src="assets/img/gunsole-1.webp" alt="GUN SOLEのスクリーンショット" loading="lazy">
+          <img src="assets/img/gunsole-2.webp" alt="GUN SOLEのスクリーンショット" loading="lazy">
+    </div>
+  </div>
+</dialog>
+
+<dialog id="game-paddle" class="game-dialog" aria-labelledby="game-paddle-title">
+  <form method="dialog" class="dialog-close-wrap"><button class="dialog-close" aria-label="閉じる">✕</button></form>
+  <div class="dialog-body">
+    <header>
+      <span class="eyebrow">2年次作品</span>
+      <h3 id="game-paddle-title">歪んだパドル</h3>
+      <ul class="tags"><li>特殊テニス</li><li>DirectX12</li><li>3人</li><li>1ヶ月</li></ul>
+    </header>
+
+    <!-- 動画: ダイアログを開いたときだけ YouTube を読み込みます(data-yt = 動画ID) -->
+    <div class="video" data-yt="hv2NTVi05-U"></div>
+
+    <div class="dialog-actions">
+      <!-- TODO: href を実際のダウンロードURL(GitHub Releases / itch.io など)に変え、class の is-todo を削除 -->
+      <a class="btn primary dl is-todo" href="#" aria-disabled="true">ダウンロード(準備中)</a>
+      <a class="btn" href="https://youtu.be/hv2NTVi05-U" target="_blank" rel="noopener">YouTubeで見る</a>
+    </div>
+
+    <dl class="spec">
+      <dt>ジャンル</dt><dd>特殊テニス</dd>
+      <dt>開発環境</dt><dd>DirectX12</dd>
+      <dt>制作人数</dt><dd>3人</dd>
+      <dt>制作期間</dt><dd>1ヶ月</dd>
+      <dt>担当箇所</dt><dd>エンジン、敵挙動、キャラデザイン</dd>
+    </dl>
+
+    <section>
+      <h4>概要</h4>
+        <p>1か月の制作期間でエンジンを1から設計し直しました。それまでのオブジェクト指向からデータ指向のECSに挑戦しています。</p>
+        <p>敵キャラのプログラムを主に担当し、時間差での敵の出現や、ランダムなCatmull-Romスプラインで移動する敵を制作しました。</p>
+    </section>
+
+    <div class="gallery">
+          <img src="assets/img/paddle-1.webp" alt="歪んだパドルのスクリーンショット" loading="lazy">
+          <img src="assets/img/paddle-2.webp" alt="歪んだパドルのスクリーンショット" loading="lazy">
+    </div>
+  </div>
+</dialog>
+
+<dialog id="game-rabbit" class="game-dialog" aria-labelledby="game-rabbit-title">
+  <form method="dialog" class="dialog-close-wrap"><button class="dialog-close" aria-label="閉じる">✕</button></form>
+  <div class="dialog-body">
+    <header>
+      <span class="eyebrow">3年次作品</span>
+      <h3 id="game-rabbit-title">Rabbit Doku</h3>
+      <ul class="tags"><li>アクション</li><li>DirectX12</li><li>3人</li><li>4ヶ月</li></ul>
+    </header>
+
+    <!-- 動画: ダイアログを開いたときだけ YouTube を読み込みます(data-yt = 動画ID) -->
+    <div class="video" data-yt="AeZ38b0Fl9A"></div>
+
+    <div class="dialog-actions">
+      <a class="btn primary dl " href="https://drive.google.com/file/d/1G5_92MRVtahSyJ33dti2vtk0DR3XJQ8o/view?usp=sharing" aria-disabled="true">ダウンロード</a>
+      <a class="btn" href="https://youtu.be/AeZ38b0Fl9A" target="_blank" rel="noopener">YouTubeで見る</a>
+    </div>
+
+    <dl class="spec">
+      <dt>ジャンル</dt><dd>アクション</dd>
+      <dt>開発環境</dt><dd>DirectX12</dd>
+      <dt>制作人数</dt><dd>3人</dd>
+      <dt>制作期間</dt><dd>4ヶ月</dd>
+      <dt>担当箇所</dt><dd>アプリケーション / エンジン、一部レベルデザイン</dd>
+    </dl>
+
+    <section>
+      <h4>概要</h4>
+        <p>プランナーがステージ設計しやすいよう、ブロックやギミックの配置などを編集できるエディタを制作しました。</p>
+        <p>正方形ではない足場を置くため、プレイヤーと矩形の押し戻し処理にも挑戦しました。</p>
+    </section>
+
+    <div class="gallery">
+          <img src="assets/img/rabbit-1.webp" alt="Rabbit Dokuのスクリーンショット" loading="lazy">
+          <img src="assets/img/rabbit-2.webp" alt="Rabbit Dokuのスクリーンショット" loading="lazy">
+    </div>
+
+      <section>
+        <h4>エピソード</h4>
+        <p>プログラマ2人、プランナー1人のチームで、企画段階でもう一人のプログラマが休学してしまい、全プログラムを担当しました。企画の練り直しやゲームの作り直しも重なり、実際にプログラミングを始められたのは制作期間4ヶ月の残り1ヶ月という状況でしたが、持てる力を総動員して完成させました。</p>
+        <p>この制作を通して、アクシデントへの対応力が以前より身に付いたと考えています。</p>
+      </section>
+
+      <section>
+        <h4>作成したエディタ</h4>
+        <p>クリックでのブロック・ギミックの配置/削除、カメラ移動範囲(Room)の配置/調整、ホイールでのマップ拡大縮小、中クリックでのカメラ移動に対応しています。</p>
+        <div class="gallery">
+          <img src="assets/img/editor-1.webp" alt="Rabbit Dokuのエディタ" loading="lazy">
+          <img src="assets/img/editor-2.webp" alt="Room配置の画面" loading="lazy">
+        </div>
+      </section>
+  </div>
+</dialog>
+
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="https://github.com/kisaikiss" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p>© 2026 My Games</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>
